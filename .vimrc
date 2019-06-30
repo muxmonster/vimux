@@ -3,8 +3,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Yggdroot/indentLine' "" Plugin verticle line.
-Plugin 'terryma/vim-multiple-cursors' "" Plugin multiple cursor.
+Plugin 'Yggdroot/indentLine' " Plugin verticle line.
+Plugin 'terryma/vim-multiple-cursors' " Plugin multiple cursor.
 call vundle#end()
 filetype plugin indent on
 set tabstop=2
