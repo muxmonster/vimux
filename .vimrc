@@ -1,4 +1,4 @@
-" Config vimrc file in macbook by muxmonster@gmail.com
+" ** Config vimrc file in macbook by muxmonster@gmail.com
 " Clone Vundle from git clone https://github.com/VundleVim/Vundle.vim.git
 " ~/.vim/bundle/Vundle.vim
 
