@@ -1,4 +1,4 @@
-" ** Config vimrc file in macbook by muxmonster@gmail.com
+" Config vimrc file in macbook by muxmonster@gmail.com
 " Clone Vundle from git clone https://github.com/VundleVim/Vundle.vim.git
 " ~/.vim/bundle/Vundle.vim
 
@@ -47,23 +47,27 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'dikiaap/minimalist'
 Plugin 'ParamagicDev/vim-medic_chalk'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set t_Co=256
 set tw=80
 syntax on
 set background=dark
 " colorscheme minimalist
-colorscheme medic_chalk
+" colorscheme medic_chalk
+colorscheme gruvbox
+set number relativenumber
 set number relativenumber
 set nu!
+set nobackup
+set noswapfile
 set cursorline 
 set laststatus=2
 set shiftwidth=2
-set tabstop=2
-set softtabstop=2
+set tabstop=4
+set softtabstop=4
 set nowrap
 set backspace=indent,eol,start
 set ruler
@@ -82,20 +86,21 @@ set listchars=tab:→\ ,trail:␣,extends:…,eol:⏎
 
 " set shortmess+=c
 set cmdheight=2
-" Show Keystroke
+" Show keystroke
 set showcmd
 
-" Set Column Color && width
+" Set column Color && width
 " Color table https://jonasjacek.github.io/colors/
 set colorcolumn=80
-highlight ColorColumn ctermbg=232
+highlight colorColumn ctermbg=234
 
 " Config line number color
-highlight LineNr ctermfg=white ctermbg=darkblue
-highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=NONE
-highlight CursorLineNr cterm=NONE ctermfg=160 ctermbg=16
+highlight lineNr ctermfg=white ctermbg=darkblue
+highlight cursorLine cterm=NONE ctermfg=NONE ctermbg=NONE
+highlight cursorLineNr cterm=NONE ctermfg=160 ctermbg=16
+highlight search cterm=NONE ctermfg=NONE ctermbg=237
 " Whitespace color
-highlight ExtraWhitespace ctermbg=red
+highlight extraWhitespace ctermbg=red
 
 " Set column
 highlight OverLength ctermbg=red ctermfg=white
@@ -121,5 +126,16 @@ let g:coc_snippet_next = '<tab>'
 
 let g:closetag_filetypes = 'html,xhtml,phtml'
 
-"Map keyboard if (type jj) then goto normal mode.
+" Map keyboard if (type jj) then goto normal mode.
 inoremap jj <Esc>k
+
+" Map NERDTreeToggle
+nnoremap <Leader>f :NERDTreeToggle<CR>
+
+" Map Buffers if open another files
+nnoremap ,l :ls<CR>
+nnoremap ,b :bp<CR>
+nnoremap ,f :bn<CR>
+nnoremap ,1 :1b<CR>
+nnoremap ,2 :2b<CR>
+nnoremap ,3 :3b<CR>
