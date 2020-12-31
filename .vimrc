@@ -17,6 +17,8 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 
 " Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'pangloss/vim-javascript'    " JavaScript support
@@ -67,6 +69,7 @@ set tags+=./tags,../tags
 " colorscheme minimalist
 " colorscheme medic_chalk
 colorscheme gruvbox
+
 set ffs=unix,dos,mac
 set encoding=utf8
 set number relativenumber
@@ -95,6 +98,8 @@ set hlsearch
 set foldmethod=manual
 set foldcolumn=1 "defines 1 col at window left, to indicate folding
 set foldlevelstart=99 "start file with all folds opened
+highlight Folded ctermbg=51 ctermfg=0 cterm=bold
+highlight FoldColumn ctermbg=NONE ctermfg=124 cterm=bold
 
 " https://gist.github.com/ruda/b22ccd3b74228a1c64f8#file-listchars-vim
 set list
@@ -104,6 +109,10 @@ set listchars=tab:→\ ,trail:␣,extends:…,eol:⏎
 set cmdheight=2
 " Show keystroke
 set showcmd
+
+" Wildmenu to Autocomplete for find in under status line (eg. :e <Tab>)
+set wildmenu
+set wildmode=list:longest,full
 
 " Set column Color && width
 " Color table https://jonasjacek.github.io/colors/
@@ -137,6 +146,7 @@ let g:indentLine_char='┆'
 let g:indentLine_color_term=88
 let g:coc_global_extensions = ['coc-snippets', 'coc-tsserver', 'coc-eslint', 'coc-angular', 'coc-styled-components', 'coc-html', 'coc-phpls', 'coc-css']
 let g:coc_snippet_next = '<tab>'
+set completeopt=longest,menuone
 
 " autocmd CursorHold * silent call CocActionAsync('highlight')
 " autocmd FileType js UltiSnipsAddFiletypes javascript-jasmine
@@ -144,7 +154,7 @@ let g:coc_snippet_next = '<tab>'
 "let g:closetag_filetypes = 'html,xhtml,phtml'
 
 " Map keyboard if (type jj) then goto normal mode.
-inoremap jj <Esc>k
+inoremap jj <Esc>
 
 " Not use arrow button
 inoremap <Up> <NOP>
@@ -178,9 +188,25 @@ nnoremap ,5 :5b<CR>
 "
 " Save and Load Fold
 augroup remember_folds
+  autocmd BufRead * normal
   autocmd!
   autocmd BufWinLeave * mkview
   autocmd BufWinEnter * silent! loadview
 augroup END
 " Config Presentation
 au FileType rst let b:presenting_slide_separator = '\v(^|\n)\~{4,}'
+
+" Config FZF Plugin
+let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+nmap <leader><tab> <plug>(fzf-maps-n)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+" Terminal buffer options for fzf
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
