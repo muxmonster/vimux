@@ -164,9 +164,10 @@ inoremap <Right> <NOP>
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 
+
 " Map move
-inoremap gj j
-inoremap gk k
+nnoremap gj j
+nnoremap gk k
 
 " Map NERDTreeToggle
 nnoremap <Leader>f :NERDTreeToggle<CR>
